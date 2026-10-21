@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能任务管理</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <div>
+        <h1>智能任务管理</h1>
+        <p class="subtitle">理清优先级，专注当下的事</p>
+      </div>
+      <div class="summary" id="summary" aria-live="polite"></div>
+    </header>
+
+    <form class="add-form" id="add-form" autocomplete="off">
+      <input
+        id="title"
+        name="title"
+        type="text"
+        maxlength="200"
+        placeholder="输入任务内容…"
+        aria-label="任务内容"
+        required
+      />
+      <select id="priority" name="priority" aria-label="优先级">
+        <option value="高">高优先级</option>
+        <option value="中" selected>中优先级</option>
+        <option value="低">低优先级</option>
+      </select>
+      <button type="submit" class="btn-primary" id="submit-btn">添加任务</button>
+    </form>
+
+    <nav class="filters" id="filters" aria-label="按优先级筛选">
+      <button class="filter-btn is-active" data-filter="all" type="button">全部 <span class="count" data-count="all">0</span></button>
+      <button class="filter-btn" data-filter="高" type="button">高 <span class="count" data-count="高">0</span></button>
+      <button class="filter-btn" data-filter="中" type="button">中 <span class="count" data-count="中">0</span></button>
+      <button class="filter-btn" data-filter="低" type="button">低 <span class="count" data-count="低">0</span></button>
+    </nav>
+
+    <section class="task-section">
+      <div class="state" id="loading">正在加载任务…</div>
+      <ul class="task-list" id="task-list"></ul>
+      <div class="state empty" id="empty" hidden>
+        <div class="empty-mark" aria-hidden="true"></div>
+        <p id="empty-text">还没有任务，先添加一条吧</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

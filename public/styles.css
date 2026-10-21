@@ -1,0 +1,460 @@
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --text: #1c2333;
+  --muted: #7a8499;
+  --line: #e8ecf4;
+  --primary: #4f6ef7;
+  --primary-dark: #3f59d8;
+  --high: #e5484d;
+  --high-bg: #fdecec;
+  --medium: #b7791f;
+  --medium-bg: #fdf3e3;
+  --low: #14866d;
+  --low-bg: #e6f6f1;
+  --shadow: 0 24px 48px -24px rgba(28, 35, 51, 0.25), 0 4px 16px rgba(28, 35, 51, 0.05);
+  --radius: 18px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 40px 16px 64px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(800px 400px at 12% -8%, rgba(79, 110, 247, 0.16), transparent 65%),
+    radial-gradient(700px 400px at 100% 0%, rgba(20, 134, 109, 0.12), transparent 60%),
+    var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.app {
+  width: 100%;
+  max-width: 720px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px;
+  animation: rise 0.45s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: 26px;
+  letter-spacing: -0.4px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.summary {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.5;
+}
+
+.summary strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* 添加表单 */
+.add-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-form input,
+.add-form select {
+  font: inherit;
+  color: var(--text);
+  background: #f8f9fd;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.add-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+.add-form select {
+  cursor: pointer;
+  padding-right: 34px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5l5-5' fill='none' stroke='%237a8499' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+}
+
+.add-form input:focus,
+.add-form select:focus {
+  background: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.12);
+}
+
+.btn-primary {
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
+  box-shadow: 0 8px 18px -8px rgba(79, 110, 247, 0.7);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 筛选 */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.filter-btn {
+  font: inherit;
+  font-size: 13px;
+  color: var(--muted);
+  background: #f4f6fb;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  background: #eef1f9;
+}
+
+.filter-btn.is-active {
+  color: var(--primary);
+  background: rgba(79, 110, 247, 0.1);
+  border-color: rgba(79, 110, 247, 0.25);
+  font-weight: 600;
+}
+
+.count {
+  display: inline-block;
+  min-width: 18px;
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+/* 任务列表 */
+.task-section {
+  padding-top: 8px;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--line);
+  animation: slide-in 0.28s ease both;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toggle {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #c9d1e2;
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.18s ease;
+}
+
+.toggle:hover {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(79, 110, 247, 0.1);
+}
+
+.toggle svg {
+  width: 13px;
+  height: 13px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.18s ease;
+}
+
+.task-item.is-done .toggle {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.task-item.is-done .toggle svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.task-title {
+  font-size: 15px;
+  line-height: 1.45;
+  word-break: break-word;
+  transition: color 0.18s ease;
+}
+
+.task-item.is-done .task-title {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-color: rgba(122, 132, 153, 0.7);
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.badge-high {
+  color: var(--high);
+  background: var(--high-bg);
+}
+
+.badge-medium {
+  color: var(--medium);
+  background: var(--medium-bg);
+}
+
+.badge-low {
+  color: var(--low);
+  background: var(--low-bg);
+}
+
+.delete-btn {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: #9aa3b8;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.18s ease;
+}
+
+.task-item:hover .delete-btn,
+.delete-btn:focus-visible {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  color: var(--high);
+  background: var(--high-bg);
+}
+
+.delete-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* 状态提示 */
+.state {
+  padding: 36px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.state.empty {
+  padding: 48px 0;
+}
+
+.empty-mark {
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 14px;
+  border-radius: 14px;
+  border: 2px dashed #d5dbe8;
+  position: relative;
+}
+
+.empty-mark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 2px;
+  background: #d5dbe8;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+}
+
+/* 提示条 */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%) translateY(10px);
+  max-width: calc(100vw - 32px);
+  padding: 11px 18px;
+  font-size: 13px;
+  color: #fff;
+  background: #2b3348;
+  border-radius: 10px;
+  box-shadow: 0 12px 28px -10px rgba(28, 35, 51, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 16px 12px 40px;
+  }
+
+  .app {
+    padding: 22px 18px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .summary {
+    text-align: left;
+  }
+
+  .add-form {
+    flex-wrap: wrap;
+  }
+
+  .add-form input {
+    flex: 1 1 100%;
+  }
+
+  .add-form select {
+    flex: 1;
+  }
+
+  .btn-primary {
+    flex-shrink: 0;
+  }
+
+  .delete-btn {
+    opacity: 1;
+  }
+}
